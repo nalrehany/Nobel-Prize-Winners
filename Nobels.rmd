@@ -1,0 +1,41 @@
+---
+title: "Nobels"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+library(dplyr)
+
+```
+
+```{r}
+nobel_data <- read.csv("C://Users//Bashar//Downloads//nobel.csv")
+
+
+```
+
+```{r}
+nobel_data$birth_country <- sub(".*\\(([^)]+)\\).*", "\\1", nobel_data$birth_country)
+
+```
+
+
+```{r}
+nobel_data <- nobel_data%>%
+  select(category, birth_country)
+
+```
+
+
+```{r}
+
+nobel_data <- as.data.frame(test <- t(table(nobel_data)))
+
+```
+
+```{r}
+nobel_data <- nobel_data%>%
+  pivot_wider(names_from = category, values_from = Freq)
+
+```
